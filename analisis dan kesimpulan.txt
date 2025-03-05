@@ -1,0 +1,9 @@
+Analisis dan diskusi 
+
+Program di atas merupakan implementasi dari model CNN (Convolutional Neural Network) yang digunakan untuk melakukan klasifikasi gambar secara real-time menggunakan webcam. Model CNN yang telah dilatih sebelumnya dimuat dengan menggunakan load_model('cnn_model.h5'), yang kemudian digunakan untuk melakukan prediksi terhadap frame yang diambil dari webcam. Daftar label kelas diperoleh dari train_generator.class_indices.keys(), yang menunjukkan kategori yang dapat dikenali oleh model.
+
+Program ini juga menyertakan mode Night Vision, di mana gambar yang ditangkap dikonversi ke skala abu-abu menggunakan cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), lalu diberikan efek warna menggunakan cv2.applyColorMap(night_vision, cv2.COLORMAP_JET). Hal ini berguna untuk meningkatkan visibilitas dalam kondisi pencahayaan rendah.
+
+Untuk keperluan klasifikasi, setiap frame yang diambil dari webcam diproses dengan mengubah ukuran menjadi 150x150 piksel dan dinormalisasi dalam rentang 0-1. Gambar ini kemudian diberikan ke model CNN untuk mendapatkan prediksi kelas, yang kemudian ditampilkan pada layar menggunakan cv2.putText(). Selain itu, dua jendela tampilan akan muncul, satu menampilkan gambar asli dengan hasil prediksi dan satu lagi menampilkan mode Night Vision.
+
+Dari segi efisiensi, program ini cukup baik dalam memproses data secara real-time. Namun, ada beberapa aspek yang dapat ditingkatkan, seperti optimasi preprocessing gambar untuk meningkatkan kecepatan inferensi, serta menangani kemungkinan kesalahan jika model atau dataset tidak ditemukan. Selain itu, inisialisasi train_generator dalam program tidak tersedia, yang dapat menyebabkan error saat eksekusi. Untuk meningkatkan kinerja, penggunaan GPU juga dapat dipertimbangkan jika model memiliki kompleksitas tinggi.
